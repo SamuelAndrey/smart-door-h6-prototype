@@ -33,7 +33,9 @@ require_once __DIR__ . "/helper/ImageProfile.php";
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <img src="./assets/image/LOGO WEB.png" style="height:5em; margin-top:-2px; float:left">
+                <a href="./scanner/index.php" id="back">
+                    <img src="./assets/image/LOGO WEB.png" style="height:5em; margin-top:-2px; float:left">
+                </a>
             </div>
             <div class="col">
                 <p id='ct' class="date"></p>
@@ -188,6 +190,15 @@ require_once __DIR__ . "/helper/ImageProfile.php";
 
     </div>
     <script src="./assets/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // trigger back to scanner
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                var tombol = document.getElementById('back');
+                tombol.click();
+            }, 4000);
+        });
+    </script>
 </body>
 
 </html>
