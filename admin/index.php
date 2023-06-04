@@ -1,130 +1,130 @@
 <?php require_once __DIR__ . "/header.php"; ?>
 <div id="layoutSidenav_content">
-    <main>
-        <div class="container-fluid px-4">
-            <h1 class="mt-4">Dashboard</h1>
-            <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Dashboard</li>
-            </ol>
-            <div class="row">
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-primary text-white mb-4">
-                        <div class="card-body">Primary Card</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-warning text-white mb-4">
-                        <div class="card-body">Warning Card</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-success text-white mb-4">
-                        <div class="card-body">Success Card</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-danger text-white mb-4">
-                        <div class="card-body">Danger Card</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
+  <main>
+    <div class="container-fluid px-4">
+      <h1 class="mt-4">Dashboard</h1>
+      <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">Dashboard</li>
+      </ol>
+      <div class="row">
+        <div class="col-xl-3 col-md-6">
+          <div class="card bg-primary text-white mb-4">
+            <div class="card-body">Primary Card</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+              <a class="small text-white stretched-link" href="#">View Details</a>
+              <div class="small text-white"><i class="fas fa-angle-right"></i></div>
             </div>
-            <div class="row">
-                <div class="col-xl-6">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-chart-area me-1"></i>
-                            Area Chart Example
-                        </div>
-                        <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-                    </div>
-                </div>
-                <div class="col-xl-6">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-chart-bar me-1"></i>
-                            Bar Chart Example
-                        </div>
-                        <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-                    </div>
-                </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+          <div class="card bg-warning text-white mb-4">
+            <div class="card-body">Warning Card</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+              <a class="small text-white stretched-link" href="#">View Details</a>
+              <div class="small text-white"><i class="fas fa-angle-right"></i></div>
             </div>
-            <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-table me-1"></i>
-                    Log access
-                </div>
-                <div class="card-body">
-                    <table id="datatablesSimple" class="tableID">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Kode</th>
-                                <th>Nama</th>
-                                <th>Waktu</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tfoot>
-                            <tr>
-                                <th>Id</th>
-                                <th>Kode</th>
-                                <th>Nama</th>
-                                <th>Waktu</th>
-                                <th>Status</th>
-                            </tr>
-                        </tfoot>
-                        <tbody>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+          <div class="card bg-success text-white mb-4">
+            <div class="card-body">Success Card</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+              <a class="small text-white stretched-link" href="#">View Details</a>
+              <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+          <div class="card bg-danger text-white mb-4">
+            <div class="card-body">Danger Card</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+              <a class="small text-white stretched-link" href="#">View Details</a>
+              <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-6">
+          <div class="card mb-4">
+            <div class="card-header">
+              <i class="fas fa-chart-area me-1"></i>
+              Area Chart Example
+            </div>
+            <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+          </div>
+        </div>
+        <div class="col-xl-6">
+          <div class="card mb-4">
+            <div class="card-header">
+              <i class="fas fa-chart-bar me-1"></i>
+              Bar Chart Example
+            </div>
+            <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+          </div>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-header">
+          <i class="fas fa-table me-1"></i>
+          Log access
+        </div>
+        <div class="card-body">
+          <table id="datatablesSimple" class="tableID">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Kode</th>
+                <th>Nama</th>
+                <th>Waktu</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>Id</th>
+                <th>Kode</th>
+                <th>Nama</th>
+                <th>Waktu</th>
+                <th>Status</th>
+              </tr>
+            </tfoot>
+            <tbody>
 
-                            <?php
-                            # menampilkan data log akses
-                            $data = query("SELECT a.id, a.kode, b.nama as nm_mhs, c.nama as nm_staf, a.waktu, a.status
-                                                    FROM log_akses a
-                                                    LEFT JOIN mahasiswa b ON b.nim = a.kode
-                                                    LEFT JOIN staf c ON c.npp = a.kode
-                                                    ORDER BY a.id DESC");
-                            foreach ($data as $row) : ?>
-                                <tr>
-                                    <td><?= $row['id'] ?></td>
-                                    <td><?= $row['kode'] ?></td>
-                                    <td><?= ($row['nm_mhs']) ? $row['nm_mhs'] : $row['nm_staf'] ?></td>
-                                    <td><?= $row['waktu'] ?></td>
-                                    <td><?= $row['status'] ?></td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+              <?php
+              # menampilkan data log akses
+              $data = query("SELECT a.id, a.kode, b.nama as nm_mhs, c.nama as nm_staf, a.waktu, a.status
+                              FROM log_akses a
+                              LEFT JOIN mahasiswa b ON b.nim = a.kode
+                              LEFT JOIN staf c ON c.npp = a.kode
+                              ORDER BY a.id DESC");
+              foreach ($data as $row) : ?>
+                <tr>
+                  <td><?= $row['id'] ?></td>
+                  <td><?= $row['kode'] ?></td>
+                  <td><?= ($row['nm_mhs']) ? $row['nm_mhs'] : $row['nm_staf'] ?></td>
+                  <td><?= $row['waktu'] ?></td>
+                  <td><?= $row['status'] ?></td>
+                </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
         </div>
-    </main>
-    <footer class="py-4 bg-light mt-auto">
-        <div class="container-fluid px-4">
-            <div class="d-flex align-items-center justify-content-between small">
-                <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                <div>
-                    <a href="#">Privacy Policy</a>
-                    &middot;
-                    <a href="#">Terms &amp; Conditions</a>
-                </div>
-            </div>
+      </div>
+    </div>
+  </main>
+  <footer class="py-4 bg-light mt-auto">
+    <div class="container-fluid px-4">
+      <div class="d-flex align-items-center justify-content-between small">
+        <div class="text-muted">Copyright &copy; Your Website 2023</div>
+        <div>
+          <a href="#">Privacy Policy</a>
+          &middot;
+          <a href="#">Terms &amp; Conditions</a>
         </div>
-    </footer>
+      </div>
+    </div>
+  </footer>
 </div>
 </div>
 
