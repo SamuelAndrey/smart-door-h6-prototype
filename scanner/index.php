@@ -1,4 +1,15 @@
-<?php require_once __DIR__ . "/../database.php" ?>
+<?php
+
+require_once __DIR__ . "/../database.php";
+require_once __DIR__ . "/../helper/Query.php";
+
+$time_now = date('H');
+$date_now = date("Y-m-d");
+
+$counterStaf = Query::counterStaf($date_now, $conn);
+$counterStudent = Query::counterStudent($date_now, $conn);
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +24,7 @@
   <link rel="stylesheet" href="../assets/css/style.css">
 
   <script type="text/javascript" src="../assets/js/datetime.js"></script>
-  <script src="../assets/js/jquery-1.11.3.min.js"></script>
+  <script src="./js/jquery.js"></script>
 
   <script type="text/javascript">
     $(document).ready(function() {
@@ -87,13 +98,13 @@
       <div class="row row-cols-2">
         <div class="col status">
           <h3 class="judul">TERJADWAL</h3>
-          <span class="count stroke align-top">69</span>
+          <span class="count stroke align-top"><?= $counterStudent ?></span>
           <span class="slash">/</span>
           <span class="count align-bottom">80</span>
         </div>
         <div class="col status">
           <h3 class="judul">BEBAS</h3>
-          <span class="count align-top ">20</span>
+          <span class="count align-top "><?= $counterStaf ?></span>
           <span class="slash">/</span>
           <span class="count align-bottom " style="margin-bottom: 100px;">20</span>
         </div>
@@ -109,7 +120,6 @@
                 <tr>
                   <th>Nim</th>
                   <th>Nama</th>
-                  <th>Progdi</th>
                   <th>Sesi</th>
                   <th>Tanggal</th>
                   <th>Ruangan</th>
@@ -126,39 +136,37 @@
                     <td> </td>
                     <td> </td>
                     <td> </td>
-                    <td> </td>
                   </tr>
                   <?php
                   # menampilkan data mahasiswa
                   # yang sudah terjadwal
                   # @samuel andrey
 
-                  $time_now = date('H');
-                  $date_now = date("Y-m-d");
+
                   $data = query("SELECT * FROM mahasiswa INNER JOIN jadwal
-                                                ON jadwal.id_mhs = mahasiswa.id_mhs
-                                                WHERE '$date_now' = tanggal &&
-                                                $time_now >= jam_masuk &&
-                                                $time_now <= jam_keluar-1");
+                                  ON jadwal.id_mhs = mahasiswa.id_mhs
+                                  WHERE '$date_now' = tanggal &&
+                                  $time_now >= jam_masuk &&
+                                  $time_now <= jam_keluar-1");
 
                   foreach ($data as $row) : ?>
                     <tr>
                       <td><?= $row['nim'] ?></td>
                       <td><?= $row['nama'] ?></td>
-                      <td><?= $row['progdi'] ?></td>
                       <td><?= $row['jam_masuk'] . ".00 - " . $row['jam_keluar'] . ".00" ?></td>
                       <td><?= $row['tanggal'] ?></td>
                       <td><?= $row['ruangan'] ?></td>
                     </tr>
                   <?php endforeach; ?>
+
                   <tr>
                     <td> &#x200B;</td>
                     <td> </td>
                     <td> </td>
                     <td> </td>
                     <td> </td>
-                    <td> </td>
                   </tr>
+
                 </tbody>
               </table>
             </div>

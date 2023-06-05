@@ -2,6 +2,7 @@
 
 require_once __DIR__ . "/database.php";
 require_once __DIR__ . "/helper/ImageProfile.php";
+require_once __DIR__ . "/helper/Query.php";
 
 ?>
 
@@ -54,15 +55,7 @@ require_once __DIR__ . "/helper/ImageProfile.php";
     $time_now = date('H');
     $date_now = date("Y-m-d");
 
-    # query validation of student from schedule
-    $cheking = "SELECT * FROM mahasiswa INNER JOIN jadwal
-                ON jadwal.id_mhs = mahasiswa.id_mhs
-                WHERE '$date_now' = tanggal
-                AND $time_now >= jam_masuk
-                AND $time_now <= jam_keluar - 1
-                AND '$input_qr' = nim";
-
-    $sql = mysqli_query($conn, $cheking);
+    $sql = Query::validateStudent($date_now, $time_now, $input_qr, $conn);
 
     if (mysqli_num_rows($sql) < 1) {
 
@@ -117,10 +110,8 @@ require_once __DIR__ . "/helper/ImageProfile.php";
           <!-- end card of data staff -->
 
       <?php
-          # insert log of staff
-          $npp = $row['npp'];
-          $query = "INSERT INTO log_akses (kode, status) VALUES ('$npp', 'Check in')";
-          mysqli_query($conn, $query);
+          # INSERT LOG STAF
+          Query::insertLog($row['npp'], 'check in', 'staf', $conn);
           break;
 
         default:
@@ -183,13 +174,12 @@ require_once __DIR__ . "/helper/ImageProfile.php";
       <!-- end card of data student -->
 
     <?php
-      # insert log of student
-      $nim = $row['nim'];
-      $query = "INSERT INTO log_akses (kode, status) VALUES ('$nim', 'Check in')";
-      mysqli_query($conn, $query);
+      # INSERT LOG STUDENT
+      Query::insertLog($row['nim'], 'check in', 'mahasiswa', $conn);
     } ?>
 
   </div>
+
   <script src="./assets/js/bootstrap.bundle.min.js"></script>
   <script>
     // trigger back to scanner
