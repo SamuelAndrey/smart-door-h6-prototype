@@ -1,19 +1,19 @@
 # SMART DOOR H6
 
-this is description
+This is description for project "Smart Door H6"
 
-### Developer
+## Developer
 
 Backend : Samuel Andrey Aji Prasetya <br>
 UI/UX : Ayatullah Ma'arif <br>
 
-### Description
+## Description
 
 - Php >= 7.4 <br>
 - WebCodeCamJQuery 2.1.0 javascript Bar-Qr code decoder <br>
 - Bootstrap 5 <br>
 - MySQL database <br>
 
-### Compability
+## Compability
 
 - Only stable on Firefox <br>
