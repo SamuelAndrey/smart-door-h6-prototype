@@ -98,7 +98,7 @@ $counterStudent = Query::counterStudent($date_now, $conn);
       <div class="row row-cols-2">
         <div class="col status">
           <h3 class="judul">TERJADWAL</h3>
-          <span class="count stroke align-top"><?= $counterStudent ?></span>
+          <span class="count align-top"><?= $counterStudent ?></span>
           <span class="slash">/</span>
           <span class="count align-bottom">80</span>
         </div>
@@ -185,7 +185,6 @@ $counterStudent = Query::counterStudent($date_now, $conn);
         </div>
 
         <div class="card-body">
-          <select class="form-select-sm"></select>
           <p class="card-text">Sejajarkan kode QR di dalam kotak untuk memindai secara otomatis.</p>
         </div>
       </div>
