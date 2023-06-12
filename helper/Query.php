@@ -39,7 +39,7 @@ class Query
     public static function counterStudent($date_now, $conn): int
     {
         $checkin = "SELECT * FROM log_akses WHERE tanggal = '$date_now' AND role = 'mahasiswa' AND status = 'check in'";
-        $checkout = "SELECT * FROM log_akses WHERE tanggal = '$date_now' AND role = 'mahasiswa' AND status = 'checck out'";
+        $checkout = "SELECT * FROM log_akses WHERE tanggal = '$date_now' AND role = 'mahasiswa' AND status = 'check out'";
 
         $in = mysqli_num_rows(mysqli_query($conn, $checkin));
         $out = mysqli_num_rows(mysqli_query($conn, $checkout));
