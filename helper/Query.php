@@ -46,4 +46,10 @@ class Query
 
         return $in - $out;
     }
+
+    public static function checkRedundant($date_now, $conn) {
+
+        $statement = "SELECT * FROM log_akses WHERE tanggal = '$date_now' AND role = 'mahasiswa' AND status = 'check in'";
+        if (mysqli_num_rows(mysqli_query($conn, $statement)) > 2) return false;
+    }
 }

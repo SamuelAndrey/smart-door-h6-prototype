@@ -34,7 +34,7 @@ require_once __DIR__ . "/helper/Query.php";
   <div class="container-fluid">
     <div class="row">
       <div class="col">
-        <a href="./scanner/index.php" id="back">
+        <a href="./scanner/scannerCheckout.php" id="back">
           <img src="./assets/image/LOGO WEB.png" style="height:5em; margin-top:-2px; float:left">
         </a>
       </div>
@@ -175,7 +175,7 @@ require_once __DIR__ . "/helper/Query.php";
 
     <?php
       # INSERT LOG STUDENT
-      Query::insertLog($row['nim'], 'check in', 'mahasiswa', $conn);
+      Query::insertLog($row['nim'], 'check out', 'mahasiswa', $conn);
     } ?>
 
   </div>

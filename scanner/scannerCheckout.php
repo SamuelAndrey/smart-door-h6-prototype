@@ -147,7 +147,7 @@ $counterStudent = Query::counterStudent($date_now, $conn);
                                   ON jadwal.id_mhs = mahasiswa.id_mhs
                                   WHERE '$date_now' = tanggal &&
                                   $time_now >= jam_masuk &&
-                                  $time_now <= jam_keluar-1");
+                                  $time_now <= jam_keluar+1");
 
                   foreach ($data as $row) : ?>
                     <tr>
@@ -201,7 +201,7 @@ $counterStudent = Query::counterStudent($date_now, $conn);
   <script type="text/javascript">
     var arg = {
       resultFunction: function(result) {
-        var redirect = '../validation.php';
+        var redirect = '../validationCheckout.php';
         $.redirectPost(redirect, {
           input_qr: result.code
         });
