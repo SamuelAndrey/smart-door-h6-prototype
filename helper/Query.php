@@ -19,16 +19,16 @@ class Query
         return mysqli_query($conn, $query);
     }
 
-    public static function insertLog($identity, $status, $role, $conn)
+    public static function insertLog($identity, $status, $jadwal, $conn)
     {
-        $query = "INSERT INTO log_akses (kode, status, role) VALUES ('$identity', '$status', '$role')";
+        $query = "INSERT INTO log_akses (kode, status, role, jadwal) VALUES ('$identity', '$status', 'mahasiswa', '$jadwal')";
         mysqli_query($conn, $query);
     }
 
-    public static function counterStaf($date_now, $conn): int
+    public static function counterStudentFree($date_now, $conn): int
     {
-        $checkin = "SELECT * FROM log_akses WHERE tanggal = '$date_now' AND role = 'staf' AND status = 'check in'";
-        $checkout = "SELECT * FROM log_akses WHERE tanggal = '$date_now' AND role = 'staf' AND status = 'check out'";
+        $checkin = "SELECT * FROM log_akses WHERE tanggal = '$date_now' AND role = 'mahasiswa' AND status = 'check in' AND jadwal = 'tidak terjadwal'";
+        $checkout = "SELECT * FROM log_akses WHERE tanggal = '$date_now' AND role = 'mahasiswa' AND status = 'check out' AND jadwal = 'tidak terjadwal'";
 
         $in = mysqli_num_rows(mysqli_query($conn, $checkin));
         $out = mysqli_num_rows(mysqli_query($conn, $checkout));
@@ -38,8 +38,8 @@ class Query
 
     public static function counterStudent($date_now, $conn): int
     {
-        $checkin = "SELECT * FROM log_akses WHERE tanggal = '$date_now' AND role = 'mahasiswa' AND status = 'check in'";
-        $checkout = "SELECT * FROM log_akses WHERE tanggal = '$date_now' AND role = 'mahasiswa' AND status = 'check out'";
+        $checkin = "SELECT * FROM log_akses WHERE tanggal = '$date_now' AND role = 'mahasiswa' AND status = 'check in' AND jadwal = 'terjadwal'";
+        $checkout = "SELECT * FROM log_akses WHERE tanggal = '$date_now' AND role = 'mahasiswa' AND status = 'check out' AND jadwal = 'terjadwal'";
 
         $in = mysqli_num_rows(mysqli_query($conn, $checkin));
         $out = mysqli_num_rows(mysqli_query($conn, $checkout));
@@ -61,7 +61,7 @@ class Query
         }
 
         if ($status == 'check out') {
-            if ($in != $out+1 || $in != $out+2) return false;
+            if ($in != $out+1) return false;
         }
 
         return true;

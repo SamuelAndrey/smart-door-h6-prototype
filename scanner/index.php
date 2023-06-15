@@ -6,7 +6,7 @@ require_once __DIR__ . "/../helper/Query.php";
 $time_now = date('H');
 $date_now = date("Y-m-d");
 
-$counterStaf = Query::counterStaf($date_now, $conn);
+$counterFree = Query::counterStudentFree($date_now, $conn);
 $counterStudent = Query::counterStudent($date_now, $conn);
 
 ?>
@@ -18,7 +18,7 @@ $counterStudent = Query::counterStudent($date_now, $conn);
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Door H6</title>
+  <title>Check In</title>
 
   <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="../assets/css/style.css">
@@ -104,7 +104,7 @@ $counterStudent = Query::counterStudent($date_now, $conn);
         </div>
         <div class="col status">
           <h3 class="judul">BEBAS</h3>
-          <span class="count align-top "><?= $counterStaf ?></span>
+          <span class="count align-top "><?= $counterFree ?></span>
           <span class="slash">/</span>
           <span class="count align-bottom " style="margin-bottom: 100px;">20</span>
         </div>
@@ -185,7 +185,7 @@ $counterStudent = Query::counterStudent($date_now, $conn);
         </div>
 
         <div class="card-body">
-          
+
           <p class="card-text">Sejajarkan kode QR di dalam kotak untuk memindai secara otomatis.</p>
         </div>
       </div>
