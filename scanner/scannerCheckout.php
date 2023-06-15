@@ -144,7 +144,7 @@ $counterStudent = Query::counterStudent($date_now, $conn);
 
 
                   $data = query("SELECT * FROM mahasiswa INNER JOIN jadwal
-                                  ON jadwal.id_mhs = mahasiswa.id_mhs
+                                  ON jadwal.kode = mahasiswa.nim
                                   WHERE '$date_now' = tanggal &&
                                   $time_now >= jam_masuk &&
                                   $time_now <= jam_keluar+1");

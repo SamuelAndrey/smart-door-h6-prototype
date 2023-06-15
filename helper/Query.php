@@ -10,11 +10,11 @@ class Query
     public static function validateStudent($date_now, $time_now, $input_qr, $conn)
     {
         $query = "SELECT * FROM mahasiswa INNER JOIN jadwal
-                    ON jadwal.id_mhs = mahasiswa.id_mhs
+                    ON jadwal.nim = mahasiswa.nim
                     WHERE '$date_now' = tanggal
                     AND $time_now >= jam_masuk
                     AND $time_now <= jam_keluar - 1
-                    AND '$input_qr' = nim";
+                    AND '$input_qr' = mahasiswa.nim";
 
         return mysqli_query($conn, $query);
     }
@@ -47,9 +47,17 @@ class Query
         return $in - $out;
     }
 
-    public static function checkRedundant($date_now, $conn) {
+    public static function checkRedundant($date_now, $input_qr, $conn) {
 
-        $statement = "SELECT * FROM log_akses WHERE tanggal = '$date_now' AND role = 'mahasiswa' AND status = 'check in'";
-        if (mysqli_num_rows(mysqli_query($conn, $statement)) > 2) return false;
+        $checkin = "SELECT * FROM log_akses WHERE tanggal = '$date_now' AND role = 'mahasiswa' AND status = 'check in' AND kode = '$input_qr'";
+
+        $checkout = "SELECT * FROM log_akses WHERE tanggal = '$date_now' AND role = 'mahasiswa' AND status = 'check out' AND kode = '$input_qr'";
+
+        $in = mysqli_num_rows(mysqli_query($conn, $checkin));
+        $out = mysqli_num_rows(mysqli_query($conn, $checkout));
+
+        if ($in > 0) return false;
+
+        return true;
     }
 }
