@@ -54,82 +54,85 @@ require_once __DIR__ . "/helper/Query.php";
     $date_now = date("Y-m-d");
 
     $sql = Query::validateStudent($date_now, $time_now, $input_qr, $conn);
-    if (Query::checkRedundant($date_now, $input_qr, $conn)) {
-      if (mysqli_num_rows($sql) < 1) {
-        # checking of access staff
-        $sql_staf = mysqli_query($conn, "SELECT * FROM staf WHERE npp = '$input_qr'");
-        switch (mysqli_num_rows($sql_staf)) {
-          case 1:
-            $role = "staf";
-            $profile_image = ImageProfile::imageStaf($input_qr);
-            $row = mysqli_fetch_array($sql_staf); ?>
-            <div class="row">
-              <div class="col greet">
-                <span class="stroke" id='gret'></span>
-                <span><?= $row['nama'] ?></span>
-              </div>
+
+    if (mysqli_num_rows($sql) < 1) {
+      # checking of access staff
+      $sql_staf = mysqli_query($conn, "SELECT * FROM staf WHERE npp = '$input_qr'");
+      switch (mysqli_num_rows($sql_staf)) {
+        case 1:
+          $role = "staf";
+          $profile_image = ImageProfile::imageStaf($input_qr);
+          $row = mysqli_fetch_array($sql_staf); ?>
+          <div class="row">
+            <div class="col greet">
+              <span class="stroke" id='gret'></span>
+              <span><?= $row['nama'] ?></span>
             </div>
-  
-            <!-- card of data staff -->
-            <div class="row">
-              <div class="col">
-                <div class="card profile mx-auto" style="max-width: 120vh;">
-                  <div class="row g-0">
-                    <div class="col-md-4">
-                      <img src="<?= $profile_image ?>" class="img-fluid rounded-start" alt="anjasfoto" style="height:100%; width:100%">
-                    </div>
-                    <div class="col-md-8">
-                      <div class="card-body width:100%">
-                        <h5 class="card-title"><?= $row['nama'] ?></h5>
-                        <ul class="list-group list-group-flush">
-                          <li class="list-group-item">
-                            <p class="card-text small"><small>NPP</small></p>
-                            <p class="card-text big"><?= $row['npp'] ?></p>
-                          </li>
-                          <li class="list-group-item">
-                            <p class="card-text small"><small>NIDN</small></p>
-                            <p class="card-text big"><?= $row['nidn'] ?></p>
-                          </li>
-                          <li class="list-group-item">
-                            <p class="card-text small"><small>Jabatan Fungsional</small></p>
-                            <p class="card-text big"><?= $row['jabatan_fungsional'] ?></p>
-                          </li>
-                        </ul>
-                      </div>
+          </div>
+
+          <!-- card of data staff -->
+          <div class="row">
+            <div class="col">
+              <div class="card profile mx-auto" style="max-width: 120vh;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src="<?= $profile_image ?>" class="img-fluid rounded-start" alt="anjasfoto" style="height:100%; width:100%">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body width:100%">
+                      <h5 class="card-title"><?= $row['nama'] ?></h5>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                          <p class="card-text small"><small>NPP</small></p>
+                          <p class="card-text big"><?= $row['npp'] ?></p>
+                        </li>
+                        <li class="list-group-item">
+                          <p class="card-text small"><small>NIDN</small></p>
+                          <p class="card-text big"><?= $row['nidn'] ?></p>
+                        </li>
+                        <li class="list-group-item">
+                          <p class="card-text small"><small>Jabatan Fungsional</small></p>
+                          <p class="card-text big"><?= $row['jabatan_fungsional'] ?></p>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- end card of data staff -->
-  
-            <?php
-            # INSERT LOG STAF
-            Query::insertLog($row['npp'], 'check in', 'staf', $conn);
-            break;
-  
-          default:
-            echo "<div class='row'>
+          </div>
+          <!-- end card of data staff -->
+
+          <?php
+          # INSERT LOG STAF
+          Query::insertLog($row['npp'], 'check in', 'staf', $conn);
+          break;
+
+        default:
+          echo "<div class='row'>
                       <div class='col greet'>
                           <h1>MAAF, DATA TIDAK DITEMUKAN...</h1>
                           <i>Anda tidak terdaftar pada akses ruangan.</i>
                       </div>
                   </div>";
-            break;
-        }
-      } else {
-  
+          break;
+      }
+    } else {
+
+      # CHECKING REDUNDANT ACCESS
+      if (Query::checkRedundant($date_now, $input_qr, 'check in', $conn)) {
+        
         $role = "mahasiswa";
         $profile_image = ImageProfile::imagetStudent($input_qr);
         $row = mysqli_fetch_array($sql); ?>
-  
+
         <div class="row">
           <div class="col greet">
             <span class="stroke" id='gret'></span>
             <span><?= $row['nama'] ?></span>
           </div>
         </div>
-  
+
         <!-- card of data student -->
         <div class="row">
           <div class="col">
@@ -166,18 +169,16 @@ require_once __DIR__ . "/helper/Query.php";
           </div>
         </div>
         <!-- end card of data student -->
-  
-        <?php
-        # INSERT LOG STUDENT
-        Query::insertLog($row['nim'], 'check in', 'mahasiswa', $conn);
+
+        <?php Query::insertLog($row['nim'], 'check in', 'mahasiswa', $conn);
+      } else {
+        echo "<div class='row'>
+                <div class='col greet'>
+                    <h1>MAAF, AKSES DITOLAK..</h1>
+                    <i>Jangan mengulang terus.....</i>
+                </div>
+              </div>";
       }
-    } else {
-      echo "<div class='row'>
-              <div class='col greet'>
-                  <h1>MAAF, AKSES DITOLAK..</h1>
-                  <i>Jangan mengulang terus.....</i>
-              </div>
-            </div>";
     } ?>
 
   </div>

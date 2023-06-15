@@ -144,10 +144,10 @@ $counterStudent = Query::counterStudent($date_now, $conn);
 
 
                   $data = query("SELECT * FROM mahasiswa INNER JOIN jadwal
-                                  ON jadwal.kode = mahasiswa.nim
+                                  ON jadwal.nim = mahasiswa.nim
                                   WHERE '$date_now' = tanggal &&
                                   $time_now >= jam_masuk &&
-                                  $time_now <= jam_keluar+1");
+                                  $time_now <= jam_keluar-1");
 
                   foreach ($data as $row) : ?>
                     <tr>
@@ -201,7 +201,7 @@ $counterStudent = Query::counterStudent($date_now, $conn);
   <script type="text/javascript">
     var arg = {
       resultFunction: function(result) {
-        var redirect = '../validationCheckout.php';
+        var redirect = '../validationcheckout.php';
         $.redirectPost(redirect, {
           input_qr: result.code
         });

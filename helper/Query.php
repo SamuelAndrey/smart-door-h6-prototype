@@ -47,16 +47,22 @@ class Query
         return $in - $out;
     }
 
-    public static function checkRedundant($date_now, $input_qr, $conn) {
+    public static function checkRedundant($date_now, $input_qr, $status, $conn) {
 
         $checkin = "SELECT * FROM log_akses WHERE tanggal = '$date_now' AND role = 'mahasiswa' AND status = 'check in' AND kode = '$input_qr'";
-
         $checkout = "SELECT * FROM log_akses WHERE tanggal = '$date_now' AND role = 'mahasiswa' AND status = 'check out' AND kode = '$input_qr'";
 
         $in = mysqli_num_rows(mysqli_query($conn, $checkin));
         $out = mysqli_num_rows(mysqli_query($conn, $checkout));
 
-        if ($in > 0) return false;
+        if ($status == 'check in') {
+            if ($in == $out) return true;
+            if ($in > 0) return false;
+        }
+
+        if ($status == 'check out') {
+            if ($in != $out+1 || $in != $out+2) return false;
+        }
 
         return true;
     }
