@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 18 Jun 2023 pada 11.21
--- Versi server: 10.4.27-MariaDB
--- Versi PHP: 8.2.0
+-- Generation Time: Jun 18, 2023 at 10:06 AM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
@@ -32,10 +32,10 @@ CREATE TABLE `admin` (
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `namalengkap` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `admin`
+-- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`idadmin`, `username`, `password`, `namalengkap`) VALUES
@@ -44,7 +44,7 @@ INSERT INTO `admin` (`idadmin`, `username`, `password`, `namalengkap`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jadwal`
+-- Table structure for table `jadwal`
 --
 
 CREATE TABLE `jadwal` (
@@ -54,10 +54,10 @@ CREATE TABLE `jadwal` (
   `jam_keluar` int(2) NOT NULL,
   `ruangan` varchar(200) NOT NULL,
   `nim` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `jadwal`
+-- Dumping data for table `jadwal`
 --
 
 INSERT INTO `jadwal` (`id_jadwal`, `tanggal`, `jam_masuk`, `jam_keluar`, `ruangan`, `nim`) VALUES
@@ -66,7 +66,7 @@ INSERT INTO `jadwal` (`id_jadwal`, `tanggal`, `jam_masuk`, `jam_keluar`, `ruanga
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `log_akses`
+-- Table structure for table `log_akses`
 --
 
 CREATE TABLE `log_akses` (
@@ -77,10 +77,10 @@ CREATE TABLE `log_akses` (
   `status` varchar(50) NOT NULL,
   `tanggal` date NOT NULL DEFAULT current_timestamp(),
   `jadwal` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `log_akses`
+-- Dumping data for table `log_akses`
 --
 
 INSERT INTO `log_akses` (`id`, `kode`, `role`, `waktu`, `status`, `tanggal`, `jadwal`) VALUES
@@ -98,7 +98,21 @@ INSERT INTO `log_akses` (`id`, `kode`, `role`, `waktu`, `status`, `tanggal`, `ja
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `mahasiswa`
+-- Table structure for table `log_akses_staf`
+--
+
+CREATE TABLE `log_akses_staf` (
+  `id` int(11) NOT NULL,
+  `npp` varchar(100) NOT NULL,
+  `waktu` datetime NOT NULL DEFAULT current_timestamp(),
+  `tanggal` date NOT NULL DEFAULT current_timestamp(),
+  `status` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mahasiswa`
 --
 
 CREATE TABLE `mahasiswa` (
@@ -107,21 +121,33 @@ CREATE TABLE `mahasiswa` (
   `angkatan` varchar(10) NOT NULL,
   `fakultas` varchar(100) NOT NULL,
   `progdi` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `mahasiswa`
+-- Dumping data for table `mahasiswa`
 --
 
 INSERT INTO `mahasiswa` (`nim`, `nama`, `angkatan`, `fakultas`, `progdi`) VALUES
+('A11.2021.13301', 'RAJENDRA NOHAN', '2021', 'FAKULTAS ILMU KOMPUTER', 'TEKNIK INFORMATIKA'),
+('A11.2021.13304', 'RIZKY SYAH GUMELAR', '2021', 'FAKULTAS ILMU KOMPUTER', 'TEKNIK INFORMATIKA'),
+('A11.2021.13329', 'MUHAMMAD RIZAL PRATAMA', '2021', 'FAKULTAS ILMU KOMPUTER', 'TEKNIK INFORMATIKA'),
+('A11.2021.13370', 'MUHAMMAD HAFIZH DZAKI', '2021', 'FAKULTAS ILMU KOMPUTER', 'TEKNIK INFORMATIKA'),
+('A11.2021.13439', 'GATA ANINDHITA ZALIANINGRUM', '2021', 'FAKULTAS ILMU KOMPUTER', 'TEKNIK INFORMATIKA'),
+('A11.2021.13457', 'MAHSA RAHIMA YUNUS', '2021', 'FAKULTAS ILMU KOMPUTER', 'TEKNIK INFORMATIKA'),
 ('A11.2021.13471', 'MUHAMMAD ROYNALDI', '2021', 'FAKULTAS ILMU KOMPUTER', 'TEKNIK INFORMATIKA'),
+('A11.2021.13477', 'FADLY SOFYANSYAH', '2021', 'FAKULTAS ILMU KOMPUTER', 'TEKNIK INFORMATIKA'),
+('A11.2021.13480', 'ARIF SAPUTRA', '2021', 'FAKULTAS ILMU KOMPUTER', 'TEKNIK INFORMATIKA'),
+('A11.2021.13488', 'ALAM MUHAMMAD HUDA', '2021', 'FAKULTAS ILMU KOMPUTER', 'TEKNIK INFORMATIKA'),
 ('A11.2021.13539', 'AYATULLAH MA\'ARIF', '2021', 'FAKULTAS ILMU KOMPUTER', 'TEKNIK INFORMATIKA'),
-('A11.2021.13716', 'SAMUEL ANDREY AJI PRASETYA', '2021', 'FAKULTAS ILMU KOMPUTER', 'TEKNIK INFORMATIKA');
+('A11.2021.13644', 'ALMAS NAJIIB IMAM M', '2021', 'FAKULTAS ILMU KOMPUTER', 'TEKNIK INFORMATIKA'),
+('A11.2021.13716', 'SAMUEL ANDREY AJI PRASETYA', '2021', 'FAKULTAS ILMU KOMPUTER', 'TEKNIK INFORMATIKA'),
+('A11.2021.13752', 'AZIZU AHMAD ROZAKI RIYANTO', '2021', 'FAKULTAS ILMU KOMPUTER', 'TEKNIK INFORMATIKA'),
+('A11.2021.13872', 'RANGGA DWI SAPUTRA', '2021', 'FAKULTAS ILMU KOMPUTER', 'TEKNIK INFORMATIKA');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `staf`
+-- Table structure for table `staf`
 --
 
 CREATE TABLE `staf` (
@@ -129,81 +155,121 @@ CREATE TABLE `staf` (
   `nidn` varchar(50) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `jabatan_fungsional` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `staf`
+--
+
+INSERT INTO `staf` (`npp`, `nidn`, `nama`, `jabatan_fungsional`) VALUES
+('0686.11.1990.001', '0616065501', 'Prof. Dr. Ir EDI NOERSASONGKO M.Kom', 'Guru Besar'),
+('0686.11.1996.100', '0606126701', 'USMAN SUDIBYO SSi.,M.KOM', 'Lektor'),
+('0686.11.1997.132', '0601066101', 'ERNA ZUNI ASTUTI M.Kom', 'Lektor Kepala'),
+('0686.11.2000.253', '0615127404', 'AJIB SUSANTO M.Kom', 'Lektor Kepala'),
+('0686.11.2001.267', '0609127601', 'IFAN RIZQA M.Kom', 'Lektor'),
+('0686.11.2009.371', '0621118401', 'HANNY HARYANTO S.Kom, M.T', 'Lektor'),
+('0686.11.2012.444', '0618038701', 'ADHITYA NUGRAHA S.Kom, M.CS', 'Lektor'),
+('0686.11.2012.456', '0629038402', 'ABU SALAM M.Kom', 'Lektor'),
+('0686.11.2012.460', '0625078504', 'ARDYTHA LUTHFIARTA M.Kom', 'Lektor'),
+('0686.11.2013.532', '0606107401', 'YANI PARTI ASTUTI S.Si, M.Kom', 'Lektor'),
+('0686.11.2013.536', '0613128502', 'DEFRI KURNIAWAN M.Kom', 'Lektor'),
+('0686.11.2014.583', '0616088801', 'DANANG WAHYU UTOMO M.Kom', 'Lektor'),
+('0686.11.2014.585', '0612029001', 'EGIA ROSI SUBHIYAKTO M.Kom', 'Lektor'),
+('0686.11.2018.745', '0617019401', 'GALUH WILUJENG SARASWATI M.CS', 'Asisten Ahli'),
+('0686.11.2018.747', '0625099401', 'NURUL ANISA SRI WINARSIH S.Kom, M.Cs', 'Asisten Ahli');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `admin`
+-- Indexes for table `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`idadmin`);
 
 --
--- Indeks untuk tabel `jadwal`
+-- Indexes for table `jadwal`
 --
 ALTER TABLE `jadwal`
   ADD PRIMARY KEY (`id_jadwal`),
   ADD KEY `nim` (`nim`);
 
 --
--- Indeks untuk tabel `log_akses`
+-- Indexes for table `log_akses`
 --
 ALTER TABLE `log_akses`
   ADD PRIMARY KEY (`id`),
   ADD KEY `kode` (`kode`);
 
 --
--- Indeks untuk tabel `mahasiswa`
+-- Indexes for table `log_akses_staf`
+--
+ALTER TABLE `log_akses_staf`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `npp` (`npp`);
+
+--
+-- Indexes for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
   ADD PRIMARY KEY (`nim`);
 
 --
--- Indeks untuk tabel `staf`
+-- Indexes for table `staf`
 --
 ALTER TABLE `staf`
   ADD PRIMARY KEY (`npp`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `admin`
+-- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
   MODIFY `idadmin` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `jadwal`
+-- AUTO_INCREMENT for table `jadwal`
 --
 ALTER TABLE `jadwal`
   MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `log_akses`
+-- AUTO_INCREMENT for table `log_akses`
 --
 ALTER TABLE `log_akses`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- AUTO_INCREMENT for table `log_akses_staf`
+--
+ALTER TABLE `log_akses_staf`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `jadwal`
+-- Constraints for table `jadwal`
 --
 ALTER TABLE `jadwal`
   ADD CONSTRAINT `jadwal_ibfk_1` FOREIGN KEY (`nim`) REFERENCES `mahasiswa` (`nim`);
 
 --
--- Ketidakleluasaan untuk tabel `log_akses`
+-- Constraints for table `log_akses`
 --
 ALTER TABLE `log_akses`
   ADD CONSTRAINT `log_akses_ibfk_1` FOREIGN KEY (`kode`) REFERENCES `mahasiswa` (`nim`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `log_akses_staf`
+--
+ALTER TABLE `log_akses_staf`
+  ADD CONSTRAINT `log_akses_staf_ibfk_1` FOREIGN KEY (`npp`) REFERENCES `staf` (`npp`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
