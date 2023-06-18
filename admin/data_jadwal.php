@@ -2,7 +2,7 @@
 <div id="layoutSidenav_content">
   <main>
     <div class="container-fluid px-4">
-      <h1 class="mt-4">Tables</h1>
+      <h1 class="mt-4">Jadwal</h1>
       <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
         <li class="breadcrumb-item active">Jadwal</li>
@@ -10,7 +10,7 @@
       <div class="card mb-4">
         <div class="card-body">
           Untuk menambahkan data jadwal.
-          <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"> Klik disini</a>
+          <a href="#" data-bs-toggle="modal" data-bs-target="#inputJadwal"> Klik disini</a>
         </div>
       </div>
       <div class="card mb-4">
@@ -22,8 +22,8 @@
           <table id="datatablesSimple">
             <thead>
               <tr>
-                <th>Id</th>
-                <th>Id mhs</th>
+                <th>ID</th>
+                <th>NIM</th>
                 <th>Tanggal</th>
                 <th>Jam Masuk</th>
                 <th>Jam Keluar</th>
@@ -33,8 +33,8 @@
             </thead>
             <tfoot>
               <tr>
-                <th>Id</th>
-                <th>Id mhs</th>
+                <th>ID</th>
+                <th>NIM</th>
                 <th>Tanggal</th>
                 <th>Jam Masuk</th>
                 <th>Jam Keluar</th>
@@ -50,7 +50,7 @@
               foreach ($data as $row) : ?>
                 <tr>
                   <td><?= $row['id_jadwal'] ?></td>
-                  <td><?= $row['id_mhs'] ?></td>
+                  <td><?= $row['nim'] ?></td>
                   <td><?= $row['tanggal'] ?></td>
                   <td><?= $row['jam_masuk'] . ".00" ?></td>
                   <td><?= $row['jam_keluar'] . ".00" ?></td>
@@ -66,36 +66,31 @@
       </div>
     </div>
   </main>
-  <footer class="py-4 bg-light mt-auto">
-    <div class="container-fluid px-4">
-      <div class="d-flex align-items-center justify-content-between small">
-        <div class="text-muted">Copyright &copy; Your Website 2023</div>
-        <div>
-          <a href="#">Privacy Policy</a>
-          &middot;
-          <a href="#">Terms &amp; Conditions</a>
-        </div>
-      </div>
-    </div>
-  </footer>
+
 </div>
 </div>
 
 
 <!-- Modal input data -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="inputJadwal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Input Jadwal</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
 
         <form action="" method="post" class="row g-3">
           <div class="col-md-6">
-            <label for="inputId" class="form-label">ID mahasiswa</label>
-            <input type="number" class="form-control" id="inputId" name="id_mhs">
+            <label for="inputId" class="form-label">NIM</label>
+            <select id="inputID" class="form-select" name="nim">
+              <?php
+                $data = query("SELECT nim FROM mahasiswa");
+                foreach ($data as $row) : ?>
+                <option><?= $row['nim'] ?></option>
+              <?php endforeach; ?>
+            </select>
           </div>
           <div class="col-md-6">
             <label for="inputDate" class="form-label">Tanggal</label>
@@ -105,7 +100,7 @@
           <div class="col-md-6">
             <label for="inputState" class="form-label">Jam masuk</label>
             <select id="inputState" class="form-select" name="jam_masuk">
-              <?php for ($i = 1; $i <= 24; $i++) : ?>
+              <?php for ($i = 0; $i <= 24; $i++) : ?>
                 <option><?= $i ?></option>
               <?php endfor ?>
             </select>
@@ -114,7 +109,7 @@
           <div class="col-md-6">
             <label for="inputState" class="form-label">Jam keluar</label>
             <select id="inputState" class="form-select" name="jam_keluar">
-              <?php for ($i = 1; $i <= 24; $i++) : ?>
+              <?php for ($i = 0; $i <= 24; $i++) : ?>
                 <option><?= $i ?></option>
               <?php endfor ?>
             </select>

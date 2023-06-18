@@ -55,6 +55,8 @@ require_once __DIR__ . "/helper/Query.php";
     $input_qr = substr(strrchr($url, "/"), 1);
     $time_now = date('H');
     $date_now = date("Y-m-d");
+    $limitTerjadwal = 80;
+    $limitFree =20;
 
     $counterFree = Query::counterStudentFree($date_now, $conn);
     $counterStudent = Query::counterStudent($date_now, $conn);
@@ -83,7 +85,7 @@ require_once __DIR__ . "/helper/Query.php";
                   </div>";
         } else {
 
-          if ($counterFree < 20) {
+          if ($counterFree < $limitFree) {
             # jika masih ada slot ruangan
             if (Query::checkRedundant($date_now, $input_qr, 'check in', $conn)) {
 
@@ -202,7 +204,7 @@ require_once __DIR__ . "/helper/Query.php";
        * pengecekan kuota ruangan
        * ======================================================
        */
-      if ($counterStudent < 80) {
+      if ($counterStudent < $limitTerjadwal) {
         if (Query::checkRedundant($date_now, $input_qr, 'check in', $conn)) {
           $role = "mahasiswa";
           $profile_image = ImageProfile::imagetStudent($input_qr);
@@ -258,7 +260,59 @@ require_once __DIR__ . "/helper/Query.php";
                   </div>
                 </div>";
         }
-      } else {
+      }
+      else if($counterStudent == $limitFree){
+        $free_access = mysqli_query($conn, "SELECT * FROM mahasiswa WHERE nim = '$input_qr'");
+        if (Query::checkRedundant($date_now, $input_qr, 'check in', $conn)) {
+
+          $role = "mahasiswa";
+          $profile_image = ImageProfile::imagetStudent($input_qr);
+          $row = mysqli_fetch_array($free_access); ?>
+
+          <div class="row">
+            <div class="col greet">
+              <span class="stroke" id='gret'></span>
+              <span><?= $row['nama'] ?></span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="card profile mx-auto" style="max-width: 120vh;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src="<?= $profile_image ?>" class="img-fluid rounded-start" alt="anjasfoto" style="height:100%; width:100%">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body width:100%">
+                      <h5 class="card-title"><?= $row['nama'] ?></h5>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                          <p class="card-text small"><small>NIM</small></p>
+                          <p class="card-text big"><?= $row['nim'] ?></p>
+                        </li>
+                        <li class="list-group-item">
+                          <p class="card-text small"><small>Progam Studi</small></p>
+                          <p class="card-text big"><?= $row['progdi'] ?></p>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <?php Query::insertLog($row['nim'], 'check in', 'tidak terjadwal', $conn);
+        } else {
+          echo "<div class='row'>
+                  <div class='col greet'>
+                    <h1>MAAF, AKSES DITOLAK..</h1>
+                    <i>Jangan mengulang terus.....</i>
+                  </div>
+                </div>";
+        }
+      } 
+      else {
         # jika kuota mahasiswa terjadwal sudah penuh
         echo "<div class='row'>
                 <div class='col greet'>

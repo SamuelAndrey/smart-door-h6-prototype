@@ -20,6 +20,28 @@ require_once __DIR__ . "/helper/Query.php";
 
 	<script type="text/javascript" src="./assets/js/datetime.js"></script>
 	<script src="./assets/js/jquery-1.11.3.min.js"></script>
+	
+	<style>
+		body{
+			display: table;
+			width: 100%;
+			height: 100%;
+
+			line-height: 1.6;
+			position: relative;
+			overflow: hidden;
+
+			background-color: #170d24;
+			background: radial-gradient(ellipse at 10% 90%, #E26868 0%, transparent 55%),
+				radial-gradient(ellipse at 90% 90%, #F48484 0%, transparent 55%),
+				radial-gradient(ellipse at 90% 10%, #BD574E 0%, transparent 55%),
+				radial-gradient(ellipse at 10% 10%, #606470 0%, transparent 55%) ;
+
+			background-size: 400% 400%;
+			animation: gradient 15s ease infinite;
+			height: 100vh;
+		}
+	</style>
 
 </head>
 

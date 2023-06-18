@@ -3,14 +3,30 @@
 function tambah_jadwal($data)
 {
     global $conn;
-    $id_mhs = htmlspecialchars($data["id_mhs"]);
+    $nim = htmlspecialchars($data["nim"]);
     $tanggal = htmlspecialchars($data["tanggal"]);
     $jam_masuk = htmlspecialchars($data["jam_masuk"]);
     $jam_keluar = htmlspecialchars($data["jam_keluar"]);
     $ruangan = htmlspecialchars($data["ruangan"]);
 
-    $query = "INSERT INTO jadwal (id_mhs, tanggal, jam_masuk, jam_keluar, ruangan)
-              VALUES ($id_mhs, '$tanggal', $jam_masuk, $jam_keluar, '$ruangan')";
+    $query = "INSERT INTO jadwal (nim, tanggal, jam_masuk, jam_keluar, ruangan)
+              VALUES ('$nim', '$tanggal', $jam_masuk, $jam_keluar, '$ruangan')";
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+function tambah_staf($data)
+{
+    
+    global $conn;
+    $npp = htmlspecialchars($data["npp"]);
+    $nidn = htmlspecialchars($data["nidn"]);
+    $nama = htmlspecialchars($data["nama"]);
+    $jabatan = htmlspecialchars($data["jabatan_fungsional"]);
+
+
+    $query = "INSERT INTO staf (npp, nidn, nama, jabatan_fungsional )
+              VALUES ('$npp', '$nidn', '$nama', '$jabatan')";
     mysqli_query($conn, $query);
 
     return mysqli_affected_rows($conn);

@@ -18,7 +18,7 @@ function display_ct() {
             day = "Jumat";
         }else if(x.getDay() == 6){
             day = "Sabtu";
-        }else if(x.getDay() == 7){
+        }else if(x.getDay() == 0){
             day = "Minggu";
         }
     var month;
@@ -47,7 +47,7 @@ function display_ct() {
         } else if(x.getMonth() +1 == 12){
             month = "Desember";
         }
-    var x1= day +", " + x.getDate() + " " + month +  ", " + x.getFullYear(); 
+    var x1= day+", " + x.getDate() + " " + month +  ", " + x.getFullYear(); 
     document.getElementById('ct').innerHTML = x1;
 
     var hour=x.getHours();

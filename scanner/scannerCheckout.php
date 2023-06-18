@@ -26,6 +26,28 @@ $counterStudent = Query::counterStudent($date_now, $conn);
   <script type="text/javascript" src="../assets/js/datetime.js"></script>
   <script src="./js/jquery.js"></script>
 
+  <style>
+		body{
+			display: table;
+			width: 100%;
+			height: 100%;
+
+			line-height: 1.6;
+			position: relative;
+			overflow: hidden;
+
+			background-color: #170d24;
+			background: radial-gradient(ellipse at 10% 90%, #E26868 0%, transparent 55%),
+				radial-gradient(ellipse at 90% 90%, #F48484 0%, transparent 55%),
+				radial-gradient(ellipse at 90% 10%, #BD574E 0%, transparent 55%),
+				radial-gradient(ellipse at 10% 10%, #606470 0%, transparent 55%) ;
+
+			background-size: 400% 400%;
+			animation: gradient 15s ease infinite;
+			height: 100vh;
+		}
+	</style>
+
   <script type="text/javascript">
     $(document).ready(function() {
 
@@ -82,8 +104,10 @@ $counterStudent = Query::counterStudent($date_now, $conn);
   <div class="container-fluid">
     <div class="row">
       <div class="col">
-        <img src="../assets/image/LOGO WEB.png" style="height:5em; margin-top:-2px; float:left">
-      </div>
+      <a href="../">
+          <img src="../assets/image/LOGO WEB.png" style="height:5em; margin-top:-2px; float:left">
+        </a> 
+    </div>
       <div class="col">
         <p id='ct' class="date"></p>
         <p id='ct1' class="clock"></p>
@@ -120,9 +144,9 @@ $counterStudent = Query::counterStudent($date_now, $conn);
                 <tr>
                   <th>Nim</th>
                   <th>Nama</th>
-                  <th>Sesi</th>
-                  <th>Tanggal</th>
-                  <th>Ruangan</th>
+                  <th>Sesi &#10240;</th>
+                  <th>Tanggal </th>
+                  <th> Ruangan&#10240; </th>
                 </tr>
               </thead>
             </table>
@@ -155,7 +179,7 @@ $counterStudent = Query::counterStudent($date_now, $conn);
                       <td><?= $row['nama'] ?></td>
                       <td><?= $row['jam_masuk'] . ".00 - " . $row['jam_keluar'] . ".00" ?></td>
                       <td><?= $row['tanggal'] ?></td>
-                      <td><?= $row['ruangan'] ?></td>
+                      <td><?= $row['ruangan'] ?> &#10240;</td>
                     </tr>
                   <?php endforeach; ?>
 
@@ -179,7 +203,7 @@ $counterStudent = Query::counterStudent($date_now, $conn);
 
     <div class="col-sm-3">
       <div class="card text-bg-dark mb-3 my-auto " style="margin-right:2em">
-        <div class="card-header" style="font-size: 1.5em; font-weight:500;">SCAN HERE!</div>
+        <div class="card-header" style="font-size: 1.5em; font-weight:500;">SCAN TO CHECK OUT</div>
         <div class="box mx-auto" style="--c:white;--w:3em;--b:0.1em; margin-top:15px">
           <canvas style="width:100%; padding:8px;" class="mx-auto"></canvas>
         </div>

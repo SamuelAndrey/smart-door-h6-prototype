@@ -35,18 +35,65 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <meta name="author" content="" />
   <title>Smart Door H6</title>
   <link href="css/styles.css" rel="stylesheet" />
+
+  <style>
+    @font-face {
+      font-family: "Oswald";
+      src: url('../assets/fonts/Oswald-VariableFont_wght.ttf') format('truetype');
+    }
+    body {
+     
+      display: table;
+      width: 100%;
+      height: 100%;
+
+      line-height: 1.6;
+      position: relative;
+      overflow: hidden;
+
+      background-color: #CCF2F4 ;
+			background: radial-gradient(ellipse at 10% 90%, #D3E0EA 0%, transparent 55%),
+				radial-gradient(ellipse at 90% 90%, #A4EBF3 0%, transparent 55%),
+				radial-gradient(ellipse at 90% 10%, #CCF2F4 0%, transparent 55%),
+				radial-gradient(ellipse at 10% 10%, #F4F9F9 0%, transparent 55%) ;
+
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+      height: 100vh;
+    }
+
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+
+  </style>
 </head>
 
-<body class="bg-success">
-  <div id="layoutAuthentication">
-    <div id="layoutAuthentication_content">
-      <main>
-        <div class="container">
-          <div class="row justify-content-center">
+<body >
+  <nav class="sb-topnav navbar navbar-expand navbar-light bg-transparent ">
+      <!-- Navbar Brand-->
+      <a class="navbar-brand ps-3" href="../"><img src="../assets/image/LOGO WEB.png" alt="" srcset="" style="height:2.5em; width:auto"></a>
+      <!-- Sidebar Toggle-->
+      <!-- Navbar Search-->
+
+      
+  </nav>
+
+        <div class="container d-flex  align-items-center">
+          <div class="row w-100  justify-content-center">
             <div class="col-lg-5">
-              <div class="card shadow-lg border-0 rounded-lg mt-5">
+              <div class="card shadow-lg border-0 rounded-3 lg-5 " style="top:35%">
                 <div class="card-header">
-                  <h3 class="text-center font-weight-light my-4">Login Admin</h3>
+                  <h3 class="text-center my-4" style=" font-family: 'Oswald';">LOGIN ADMIN</h3>
                 </div>
                 <div class="card-body">
                   <?php if (isset($alert)) : ?>
@@ -65,31 +112,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                       <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
                       <label class="form-check-label" for="inputRememberPassword">Remember Password</label>
                     </div>
-                    <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                      <a class="small" href="password.html">Forgot Password?</a>
-                      <button class="btn btn-primary" type="submit">Login</button>
+                    <div class="d-flex align-items-center justify-content-center">
+                      <button class="btn btn-primary" type="submit" style="font-family: 'Oswald';width:100%; margin-top:1em; padding:.4em; font-size:1.2em; font-weight:700;">LOGIN</button>
                     </div>
                   </form>
-                </div>
-                <div class="card-footer text-center py-3">
-                  <a class="small" href="../">@smart_door_h6</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </main>
-    </div>
-    <div id="layoutAuthentication_footer">
-      <footer class="py-4 bg-light mt-auto">
-        <div class="container-fluid px-4">
-          <div class="d-flex align-items-center justify-content-between small">
-            <div class="text-muted">Copyright &copy; Smart Door H6 2023</div>
-          </div>
-        </div>
-      </footer>
-    </div>
-  </div>
+
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   <script src="js/scripts.js"></script>
 </body>
