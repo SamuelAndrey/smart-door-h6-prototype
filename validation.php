@@ -260,8 +260,8 @@ require_once __DIR__ . "/helper/Query.php";
                   </div>
                 </div>";
         }
-      }
-      else if($counterStudent == $limitFree){
+      } else if ($counterStudent == $limitTerjadwal) {
+
         $free_access = mysqli_query($conn, "SELECT * FROM mahasiswa WHERE nim = '$input_qr'");
         if (Query::checkRedundant($date_now, $input_qr, 'check in', $conn)) {
 
