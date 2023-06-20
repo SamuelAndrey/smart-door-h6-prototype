@@ -31,3 +31,15 @@ function tambah_staf($data)
 
     return mysqli_affected_rows($conn);
 }
+
+function limitTambahJadwal() {
+    global $conn;
+    $time_now = date('H');
+    $date_now = date("Y-m-d");
+    $statement = "SELECT * FROM jadwal
+                    WHERE '$date_now' = tanggal &&
+                    $time_now-6 >= jam_masuk &&
+                    $time_now <= jam_keluar-1";
+
+    return mysqli_num_rows(mysqli_query($conn, $statement));
+}

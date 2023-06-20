@@ -9,8 +9,12 @@
       </ol>
       <div class="card mb-4">
         <div class="card-body">
-          Untuk menambahkan data jadwal.
-          <a href="#" data-bs-toggle="modal" data-bs-target="#inputJadwal"> Klik disini</a>
+          <?php if (limitTambahJadwal() < 80) { ?>
+            Untuk menambahkan data jadwal.
+            <a href="#" data-bs-toggle="modal" data-bs-target="#inputJadwal"> Klik disini</a>
+          <?php } else { ?>
+            Jadwal Sudah Penuh, tidak dapat menambah jadwal
+          <?php } ?>
         </div>
       </div>
       <div class="card mb-4">
