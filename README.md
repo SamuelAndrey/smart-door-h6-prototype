@@ -6,6 +6,7 @@ This is description for project "Smart Door H6"
 
 Backend : Samuel Andrey Aji Prasetya <br>
 UI/UX : Ayatullah Ma'arif <br>
+Database : Muhammad Roynaldi <br>
 
 ## Description
 
